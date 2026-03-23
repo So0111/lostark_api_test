@@ -1,6 +1,6 @@
 import sqlite3
 import requests
 
-conn = sql.connect"lostark.db"
+conn = sql.connect""
 
 API_KEY = ""
