@@ -1,8 +1,7 @@
 import numpy as np
 
 # 1. Joint Probability P(X, Y)
-raw_data = np.array([[0.1, 0.2, 0.1],
-                     [0.2, 0.1, 0.3]])
+raw_data = np.array([[0.1, 0.2, 0.1], [0.2, 0.66, 0.3]])
 joint_prob = raw_data / np.sum(raw_data)
 
 print("1. Joint Probability P(X, Y):\n", joint_prob)
