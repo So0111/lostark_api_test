@@ -40,7 +40,10 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          git add lostark_prices.db
+          git stash
           git pull --rebase origin main
+          git stash pop
           git add lostark_prices.db
           git diff --staged --quiet || git commit -m "data: $(date '+%Y-%m-%d %H:%M') KST"
           git push
