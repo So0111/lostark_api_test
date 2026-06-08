@@ -30,9 +30,6 @@ def train_evaluate(df: pd.DataFrame, feature_cols: list) -> dict:
     X = df[feature_cols].values
     y = df["label"].values
 
-    scaler = StandardScaler()
-    X = scaler.fit_transform(X)
-
     tscv = TimeSeriesSplit(n_splits=5)
     results = {}
 
@@ -44,6 +41,11 @@ def train_evaluate(df: pd.DataFrame, feature_cols: list) -> dict:
         for train_idx, test_idx in tscv.split(X):
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
+
+            scaler = StandardScaler()
+            X_train = scaler.fit_transform(X_train)
+            X_test = scaler.transform(X_test)
+
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             f1_scores.append(f1_score(y_test, y_pred, average="macro", zero_division=0))
